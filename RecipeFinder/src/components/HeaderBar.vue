@@ -1,11 +1,12 @@
  <template>
     <div class="greetings">
         <div class="header-content">
-      <img alt="Vue logo" class="logo" src="@/assets/Womanwithchicken.webp" width="200" height="200" />
+      <img alt="Chef lady" class="logo" src="@/assets/Womanwithchicken.webp"  />
       <div class="header-text">
         <h1>Welcome to Jesse's Recipe Finder</h1>
         <h3>Can't quite figure out what to make with what you have? Enter your ingredients, and we'll give you some ideas!</h3>
       </div>
+      <img alt="ingredients" class="logo" src="@/assets/ingredientsheader.webp"  />
     </div>
       <nav class="nav-bar flex items-center justify-between bg-gray-700 p-2">
         <div class="block lg:hidden">
@@ -52,11 +53,12 @@
 .header-content {
   display: flex;
   align-items: center; /* Aligns items vertically in the center */
-  justify-content: start; /* Aligns items horizontally to the start */
+  justify-content: space-between; /* Aligns items horizontally to the start */
 }
 
-.header-text {
-  margin-left: 20px; /* Adds space between the image and the text */
+.logo {
+  max-width: 100%; /* Ensures that the image is never larger than its container */
+  height: 150px; /* Maintains the aspect ratio */
 }
 
 .nav-bar {
@@ -94,9 +96,18 @@ nav a:first-of-type {
 </style>
 
 <style scoped>
-.greetings h1 {
-  color: green; /* Moved inline style to CSS */
+
+h1 {
+  top: -10px;
+  color: hsla(160, 100%, 37%, 1);
+  text-shadow: 2px 3px 3px rgb(1, 72, 28);
+  font-size: x-large;
 }
+
+h3 {
+  text-shadow: 2px 3px 3px rgb(85, 85, 85);
+}
+
 
 .nav-item {
   padding: 10px;
@@ -109,5 +120,23 @@ nav a:first-of-type {
     display: block;
     width: 100%;
   }
+  .header-content {
+    flex-direction: column; /* Stack the logo and text vertically on small screens */
+    text-align: center; /* Center the text */
+  }
+
+  .header-content .logo {
+    max-width: 90%; /* Smaller maximum width for the logos */
+    margin-bottom: 20px; /* Add some space between the logo and the header text */
+  }
+
+  h1 {
+    font-size:medium;
+  }
+
+  h3 {
+    font-size:small;
+  }
+  
 }
 </style>

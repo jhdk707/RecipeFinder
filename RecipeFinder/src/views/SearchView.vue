@@ -81,12 +81,14 @@
   </script>
   
   <style>
+
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
   margin: 2em;
+
 }
 
 input {
@@ -95,6 +97,7 @@ input {
 
 .searchcontainer {
   margin-top: 2%;
+  max-height: 50%;
 }
 
 form{
