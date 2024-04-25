@@ -1,61 +1,50 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterView } from 'vue-router'
+import HeaderBar from './components/HeaderBar.vue'
 </script>
 
-<template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/Womanwithchicken.webp" width="200" height="200" />
-
-    <div class="wrapper">
-      <HelloWorld msg="Welcome to Jesse's Recipe Finder" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/search">Search</RouterLink>
-      </nav>
-    </div>
-  </header>
-
+<template class="overflow-y-auto">
+  <div class="body">
+  <div class="headercontainer">
+  <HeaderBar/>
+  </div>
+  <div class="viewcontainer">
   <RouterView />
+  </div> 
+</div> 
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling on the body directly */
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
+.headercontainer {
+  position: fixed;
+  top: 0;
   width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
+  z-index: 1000;
+  background-color: #181818;
+  height: 40px; /* Ensure this is the actual height of your header */
 }
 
-nav a.router-link-exact-active {
-  color: var(--color-text);
+.viewcontainer {
+  width: 100vw; /* Adjusted to 100% of the viewport width for consistency */
+  margin-top: 300px; /* Should match the header's height */
+  overflow-y: auto; /* Ensures scroll within this container only */
+  height: calc(100vh - 40px); /* Subtract the header's height from the viewport height */
+  box-sizing: border-box; /* Include padding in height calculation */
 }
 
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
 
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
 
 @media (min-width: 1024px) {
   header {

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="searchcontainer">
       <form @submit.prevent="searchRecipes">
         <input type="text" v-model="ingredients" placeholder="Enter ingredients separated by commas">
         <button type="submit">Search Recipes</button>
@@ -83,12 +83,23 @@
   <style>
 .recipes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
+  margin: 2em;
 }
 
 input {
     color:black;
+}
+
+.searchcontainer {
+  margin-top: 2%;
+}
+
+form{
+  width: 80vw;
+  background-color: #181818; /* Example background color */   
+  margin-left: 10em;
 }
 </style>
