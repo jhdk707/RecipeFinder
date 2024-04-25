@@ -1,5 +1,5 @@
 <template>
-    <div class="card">
+    <div class="card" @click="emitRecipeId">
       <h4>{{ recipe.title }}</h4>
       <img :src="recipe.image" :alt="recipe.title" style="width: 100%;">
     </div>
@@ -9,9 +9,15 @@
   export default {
     props: {
       recipe: Object
+    },
+    methods: {
+      emitRecipeId() {
+        this.$emit('selectRecipe', this.recipe.id);
+      }
     }
   }
   </script>
+  
   
   <style>
   .card {
