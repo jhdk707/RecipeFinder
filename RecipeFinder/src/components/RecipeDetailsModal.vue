@@ -1,6 +1,6 @@
 <template>
     <div class="modal">
-      <button @click="$emit('closeModal')">Close</button>
+      <button class="close" @click="$emit('closeModal')">Close</button>
       <div class="modal-content">
         <h2>{{ recipe.title }}</h2>
         <img :src="recipe.image" :alt="recipe.title">
@@ -12,7 +12,7 @@
           </li>
         </ul>
         <p>Preparation time: {{ recipe.readyInMinutes }} minutes</p>
-        <a :href="recipe.sourceUrl" target="_blank">Read Full Recipe</a>
+        <a class="link" :href="recipe.sourceUrl" target="_blank">Read Full Recipe</a>
       </div>
     </div>
   </template>
@@ -63,6 +63,14 @@
   
   .modal-content li {
     margin-bottom: 5px;
+  }
+
+  .close{
+    color:red;
+  }
+
+  .link{
+    color: blue;
   }
   </style>
   
