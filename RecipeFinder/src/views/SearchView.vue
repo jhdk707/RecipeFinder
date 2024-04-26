@@ -1,8 +1,8 @@
 <template>
     <div class="searchcontainer">
       <form @submit.prevent="searchRecipes">
-        <input type="text" v-model="ingredients" placeholder="Enter ingredients separated by commas">
-        <button type="submit">Search Recipes</button>
+        <fwb-input v-model="ingredients" type="text" placeholder="Enter ingredients on hand, separated by commas"></fwb-input>
+        <fwb-button size="md" type="submit">Search Recipes</fwb-button>
       </form>
       <div class="recipes-grid">
         <RecipeCard
@@ -12,15 +12,21 @@
           @selectRecipe="fetchRecipeDetails"
         />
       </div>
-      <!-- Modal or detailed view goes here -->
+      <!-- Modal Render -->
       <RecipeDetailsModal v-if="selectedRecipe" :recipe="selectedRecipe" @closeModal="selectedRecipe = null" />
     </div>
   </template>
   
+  <script setup>
+  import { FwbButton, FwbInput } from 'flowbite-vue'
+  </script>
+
+
   <script>
   import axios from 'axios';
   import RecipeCard from '../components/RecipeCard.vue';
   import RecipeDetailsModal from '../components/RecipeDetailsModal.vue';
+
   
   export default {
     components: {
@@ -78,31 +84,31 @@
       }
     }
   }
-  </script>
+</script>
   
-  <style>
-
+<style>
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   padding: 20px;
   margin: 2em;
-
 }
 
 input {
-    color:black;
+  color:black;
 }
 
 .searchcontainer {
   margin-top: 2%;
   max-height: 50%;
+  justify-content: center;
 }
 
 form{
-  width: 80vw;
-  background-color: #181818; /* Example background color */   
-  margin-left: 10em;
+  background-color: #181818;   
+  padding: .5em;
+  margin-left: 2em;
+  max-width: 800px;
 }
 </style>

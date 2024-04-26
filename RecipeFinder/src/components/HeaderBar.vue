@@ -1,12 +1,12 @@
  <template>
     <div class="greetings">
         <div class="header-content">
-      <img alt="Chef lady" class="logo" src="@/assets/Womanwithchicken.webp"  />
+      <img alt="Chef lady" class="chef" src="@/assets/Womanwithchicken.webp"  />
       <div class="header-text">
         <h1>Welcome to Jesse's Recipe Finder</h1>
         <h3>Can't quite figure out what to make with what you have? Enter your ingredients, and we'll give you some ideas!</h3>
       </div>
-      <img alt="ingredients" class="logo" src="@/assets/ingredientsheader.webp"  />
+      <img alt="ingredients" class="food" src="@/assets/ingredientsheader.webp"  />
     </div>
       <nav class="nav-bar flex items-center justify-between bg-gray-700 p-2">
         <div class="block lg:hidden">
@@ -18,12 +18,13 @@
       <router-link to="/" class="nav-item" @click="closeMenu">
         <a :class="{ 'router-link-exact-active': isActive('/') }" class="link">Home</a>
       </router-link>
-      <router-link to="/about" class="nav-item" @click="closeMenu">
-        <a :class="{ 'router-link-exact-active': isActive('/about') }" class="link">About</a>
-      </router-link>
       <router-link to="/search" class="nav-item" @click="closeMenu">
         <a :class="{ 'router-link-exact-active': isActive('/search') }" class="link">Search</a>
       </router-link>
+      <router-link to="/about" class="nav-item" @click="closeMenu">
+        <a :class="{ 'router-link-exact-active': isActive('/about') }" class="link">About</a>
+      </router-link>
+
     </div>
     </nav>
     </div>
@@ -53,10 +54,24 @@
 .header-content {
   display: flex;
   align-items: center; /* Aligns items vertically in the center */
-  justify-content: space-between; /* Aligns items horizontally to the start */
+  justify-content: space-evenly; /* Aligns items horizontally to the start */
 }
 
-.logo {
+.header-text{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 40em;
+  margin-bottom: .5em;
+  text-align: center;
+}
+
+.chef {
+  max-width: 100%; /* Ensures that the image is never larger than its container */
+  height: 150px; /* Maintains the aspect ratio */
+}
+
+.food {
   max-width: 100%; /* Ensures that the image is never larger than its container */
   height: 150px; /* Maintains the aspect ratio */
 }
@@ -102,10 +117,14 @@ h1 {
   color: hsla(160, 100%, 37%, 1);
   text-shadow: 2px 3px 3px rgb(1, 72, 28);
   font-size: x-large;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 500;
 }
 
 h3 {
   text-shadow: 2px 3px 3px rgb(85, 85, 85);
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: .25em;
 }
 
 
@@ -131,11 +150,15 @@ h3 {
   }
 
   h1 {
-    font-size:medium;
+    font-size:larger;
   }
 
   h3 {
     font-size:small;
+  }
+
+  .chef, .food {
+  display: none;
   }
   
 }
