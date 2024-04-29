@@ -1,165 +1,47 @@
- <template>
-    <div class="greetings">
-        <div class="header-content">
-      <img alt="Chef lady" class="chef" src="@/assets/Womanwithchicken.webp"  />
-      <div class="header-text">
-        <h1>Welcome to Jesse's Recipe Finder</h1>
-        <h3>Can't quite figure out what to make with what you have? Enter your ingredients, and we'll give you some ideas!</h3>
-      </div>
-      <img alt="ingredients" class="food" src="@/assets/ingredientsheader.webp"  />
-    </div>
-      <nav class="nav-bar flex items-center justify-between bg-gray-700 p-2">
-        <div class="block lg:hidden">
-      <button @click="toggleMobileMenu" class="text-white">
-        &#9776; 
-      </button>
-    </div>
-      <div :class="{'hidden': !mobileMenuOpen, 'flex': mobileMenuOpen}" class="flex-col lg:flex-row lg:flex">
-      <router-link to="/" class="nav-item" @click="closeMenu">
-        <a :class="{ 'router-link-exact-active': isActive('/') }" class="link">Home</a>
-      </router-link>
-      <router-link to="/search" class="nav-item" @click="closeMenu">
-        <a :class="{ 'router-link-exact-active': isActive('/search') }" class="link">Search</a>
-      </router-link>
-      <router-link to="/about" class="nav-item" @click="closeMenu">
-        <a :class="{ 'router-link-exact-active': isActive('/about') }" class="link">About</a>
-      </router-link>
+<template>
+  <fwb-navbar class="bg-yellow-400 text-black">
+    <template #logo>
+      <h1 class="mb-4 text-3xl font-extrabold tracking-tight leading-none text-black md:text-xl lg:text-xl">Jesse's Recipe Finder</h1>
+    </template>
+    <template #default="{ isShowMenu }">
+      <fwb-navbar-collapse :is-show-menu="isShowMenu" class="text-black">
+        <fwb-navbar-link :is-active="isActive('/')" link="/" class="text-black hover:text-gray-900">
+          Home
+        </fwb-navbar-link>
+        <fwb-navbar-link :is-active="isActive('/search')" link="/search" class="text-black hover:text-gray-900">
+          Search
+        </fwb-navbar-link>
+        <fwb-navbar-link :is-active="isActive('/about')" link="/about" class="text-black hover:text-gray-900">
+          About
+        </fwb-navbar-link>
+      </fwb-navbar-collapse>
+    </template>
+  </fwb-navbar>
+</template>
 
-    </div>
-    </nav>
-    </div>
-  </template>
 
-  <script setup>
-    import { useRoute } from 'vue-router';
-    import { ref } from 'vue';
+<script setup>
+import { FwbNavbar, FwbNavbarCollapse, FwbNavbarLink } from 'flowbite-vue';
+import { useRoute } from 'vue-router';
 
-    const route = useRoute();
-    const mobileMenuOpen = ref(false);
+const route = useRoute();
 
-    const toggleMobileMenu = () => {
-        mobileMenuOpen.value = !mobileMenuOpen.value;
-    };
-    const closeMenu = () => {
-        mobileMenuOpen.value = false;
-    };
-
-    const isActive = (routePath) => {
-  return route.path === routePath;
-};
-  </script>
-
-  <style>
-
-.header-content {
-  display: flex;
-  align-items: center; /* Aligns items vertically in the center */
-  justify-content: space-evenly; /* Aligns items horizontally to the start */
+const isActive = (path) => {
+  return route.path === path;
 }
-
-.header-text{
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 40em;
-  margin-bottom: .5em;
-  text-align: center;
-}
-
-.chef {
-  max-width: 100%; /* Ensures that the image is never larger than its container */
-  height: 150px; /* Maintains the aspect ratio */
-}
-
-.food {
-  max-width: 100%; /* Ensures that the image is never larger than its container */
-  height: 150px; /* Maintains the aspect ratio */
-}
-
-.nav-bar {
-  background-color: gray;
-  padding: 1rem 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-</style>
+</script>
 
 <style scoped>
 
-h1 {
-  top: -10px;
-  color: hsla(160, 100%, 37%, 1);
-  text-shadow: 2px 3px 3px rgb(1, 72, 28);
-  font-size: x-large;
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  font-weight: 500;
-}
+.h1{
+color:black;
 
-h3 {
-  text-shadow: 2px 3px 3px rgb(85, 85, 85);
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin: .25em;
 }
 
 
-.nav-item {
-  padding: 10px;
-  color: white;
-  text-decoration: none;
-}
 
-@media (max-width: 768px) { /* Example breakpoint for mobile devices */
-  .nav-item {
-    display: block;
-    width: 100%;
-  }
-  .header-content {
-    flex-direction: column; /* Stack the logo and text vertically on small screens */
-    text-align: center; /* Center the text */
-  }
-
-  .header-content .logo {
-    max-width: 90%; /* Smaller maximum width for the logos */
-    margin-bottom: 20px; /* Add some space between the logo and the header text */
-  }
-
-  h1 {
-    font-size:larger;
-  }
-
-  h3 {
-    font-size:small;
-  }
-
-  .chef, .food {
-  display: none;
-  }
-  
-}
 </style>
+
+
+
+

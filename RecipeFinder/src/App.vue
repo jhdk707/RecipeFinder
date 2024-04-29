@@ -36,11 +36,11 @@ import HeaderBar from './components/HeaderBar.vue'
 }
 
 .viewcontainer {
-  width: 100vw; /* Adjusted to 100% of the viewport width for consistency */
-  margin-top: 200px; /* Should match the header's height */
-  overflow-y: auto; /* Ensures scroll within this container only */
-  height: calc(100vh - 40px); /* Subtract the header's height from the viewport height */
-  box-sizing: border-box; /* Include padding in height calculation */
+  width: 100vw;
+  margin-top: 200px;
+  overflow-y: auto;
+  height: calc(100vh - 40px);
+  box-sizing: border-box;
 }
 
 
