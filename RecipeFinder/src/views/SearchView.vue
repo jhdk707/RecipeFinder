@@ -1,21 +1,21 @@
 <template>
-    <div class="searchcontainer">
-      <form @submit.prevent="searchRecipes">
-        <fwb-input v-model="ingredients" type="text" placeholder="Enter ingredients on hand, separated by commas"></fwb-input>
-        <fwb-button size="md" type="submit">Search Recipes</fwb-button>
-      </form>
-      <div class="recipes-grid">
-        <RecipeCard
-          v-for="recipe in recipes"
-          :key="recipe.id"
-          :recipe="recipe"
-          @selectRecipe="fetchRecipeDetails"
-        />
-      </div>
-      <!-- Modal Render -->
-      <RecipeDetailsModal v-if="selectedRecipe" :recipe="selectedRecipe" @closeModal="selectedRecipe = null" />
+  <div class="searchcontainer">
+    <form @submit.prevent="searchRecipes" class="search-form">
+      <fwb-input v-model="ingredients" type="text" placeholder="Enter ingredients on hand, separated by commas"></fwb-input>
+      <fwb-button size="md" type="submit">Search Recipes</fwb-button>
+    </form>
+    <div class="recipes-grid">
+      <RecipeCard
+        v-for="recipe in recipes"
+        :key="recipe.id"
+        :recipe="recipe"
+        @selectRecipe="fetchRecipeDetails"
+      />
     </div>
-  </template>
+    <!-- Modal Render -->
+    <RecipeDetailsModal v-if="selectedRecipe" :recipe="selectedRecipe" @closeModal="selectedRecipe = null" />
+  </div>
+</template>
   
   <script setup>
   import { FwbButton, FwbInput } from 'flowbite-vue'
@@ -91,8 +91,9 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  padding: 20px;
-  margin: 2em;
+  width: 100%;
+  max-width: 1200px; 
+  margin-top: 2em;
 }
 
 input {
@@ -100,15 +101,22 @@ input {
 }
 
 .searchcontainer {
-  margin-top: 2%;
-  max-height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 20px;
 }
 
-form{
+.search-form {
+  width: 100%;
+  max-width: 800px; 
   background-color: #181818;   
-  padding: .5em;
-  margin-left: 2em;
-  max-width: 800px;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px; 
 }
 </style>
