@@ -11,7 +11,6 @@ import TheWelcome from '../components/TheWelcome.vue'
 
 <style scoped>
 .body{
-  width: 80vw;
-  margin: 2em;
+  margin: 1em;
 }
 </style>

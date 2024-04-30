@@ -1,9 +1,10 @@
 <template>
-  <div class="searchcontainer">
+  <div class="searchbody">
     <form @submit.prevent="searchRecipes" class="search-form">
       <fwb-input v-model="ingredients" type="text" placeholder="Enter ingredients on hand, separated by commas"></fwb-input>
-      <fwb-button size="md" type="submit">Search Recipes</fwb-button>
+      <fwb-button size="md" type="submit" color="green">Search Recipes</fwb-button>
     </form>
+  <div class="searchcontainer">
     <div class="recipes-grid">
       <RecipeCard
         v-for="recipe in recipes"
@@ -15,6 +16,7 @@
     <!-- Modal Render -->
     <RecipeDetailsModal v-if="selectedRecipe" :recipe="selectedRecipe" @closeModal="selectedRecipe = null" />
   </div>
+</div>
 </template>
   
   <script setup>
@@ -87,13 +89,15 @@
 </script>
   
 <style>
+
+
 .recipes-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
   width: 100%;
   max-width: 1200px; 
-  margin-top: 2em;
+  margin-top: 6em;
 }
 
 input {
@@ -108,15 +112,22 @@ input {
   min-height: 100vh;
   margin: 0;
   padding: 20px;
+  overflow-y: auto; /* Enables scrolling only when content overflows */
 }
 
 .search-form {
   width: 100%;
   max-width: 800px; 
   background-color: #181818;   
-  padding: 1em;
+  padding: .5em;
   display: flex;
   flex-direction: column;
-  gap: 10px; 
+  gap: 5px; 
+  border-radius: 10px;
+  position: fixed;
 }
+
+
+
+
 </style>

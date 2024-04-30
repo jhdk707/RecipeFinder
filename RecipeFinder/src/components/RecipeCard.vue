@@ -35,7 +35,18 @@
       emitRecipeId() {
         this.$emit('selectRecipe', this.recipe.id);
       }
-    }
+    },
+  mounted() {
+    // Preload the image as soon as the component mounts
+    const img = new Image();
+    img.src = this.recipe.image;
+    img.onload = () => {
+      console.log('Image preloaded successfully');
+    };
+    img.onerror = () => {
+      console.error('Failed to preload image');
+    };
+  }
   }
   </script>
   
