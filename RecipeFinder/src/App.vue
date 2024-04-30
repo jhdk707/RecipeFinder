@@ -21,7 +21,6 @@ import HeaderBar from './components/HeaderBar.vue'
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  height: 90vh;
   margin: 0;
   padding: 0;
   overflow: hidden; /* Prevent scrolling on the body directly */
@@ -37,9 +36,7 @@ import HeaderBar from './components/HeaderBar.vue'
 
 .viewcontainer {
   width: 100vw;
-  margin-top: 200px;
   overflow-y: auto;
-  height: calc(100vh - 40px);
   box-sizing: border-box;
 }
 
@@ -57,10 +54,20 @@ import HeaderBar from './components/HeaderBar.vue'
 
   .viewcontainer {
   width: 100vw; /* Adjusted to 100% of the viewport width for consistency */
-  margin-top: 150px; /* Should match the header's height */
+  margin-top: 95px; 
   overflow-y: auto; /* Ensures scroll within this container only */
-  height: calc(100vh - 40px); /* Subtract the header's height from the viewport height */
+  height: calc(90vh - 20px); /* Subtract the header's height from the viewport height */
   box-sizing: border-box; /* Include padding in height calculation */
+  }
+
+  .body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling on the body directly */
   }
 }
 </style>
