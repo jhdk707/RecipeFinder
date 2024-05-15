@@ -10,9 +10,6 @@ defineProps({
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
-    <h3>
-      Can't quite figure out what to make with what you have? Enter your ingredients, and we'll give you some ideas! 
-    </h3>
   </div>
 </template>
 

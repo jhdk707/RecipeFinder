@@ -1,16 +1,17 @@
 <template>
   <div class="about">
-    <div class="contentbg">
+    <div class="contentbg relative items-center justify-center">
+    <h1> Mission statement: The goal behind this project is to help reduce foodwaste, by providing a resource for users to make them most out of the ingredients that they have on hand before it goes bad, and reducing money spent on new ingredients. It is important to me to be able to use as much food as possible in as many different ways as possible before resorting to having to throw it out (or preferably compost if an option)</h1>
     <h1>This app was built as a project to have some fun combining two of my passions. Food & coding. Thanks to David at Spoonacular for building such a great API to play with and make this possible.</h1>
     <h2> Future developments will include: equipment needed, a "pro" account that allows you to login and save recipes, and more to come. If you think of anything let me know! </h2>
     <div class="donatecontainer">
-  <p class="donateheader">Want to support this project?</p>
+  <p class="donateheader relative flex items-center justify-center">Want to support this free-to-use project?</p>
   <a href="https://venmo.com/u/tubeampmonolith" class="venmo-button" id="venmoLink">
     <img src="@/components/icons/venmo-logo.png" alt="Venmo Logo" class="venmo-logo">
   </a>
 </div>
     <hr>
-    <p class="footertext">Built by Jesse Hudak 04-24-2024 | Built with Vuejs3</p>
+    <p class="footertext relative flex items-center justify-center">Built by Web Warlocks | 04-24-2024 | Built with Vuejs3</p>
     </div>
   </div>
 </template>
@@ -28,8 +29,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 .about{
  display: block;
- margin: 1em;
+ margin: 5em;
  width: auto;
+ overflow: hidden;
+ align-items: center;
+ position: fixed;
 }
 
 h1{
@@ -43,7 +47,7 @@ h2{
 }
 
 .footertext{
-font-size: small;
+font-size: medium;
 }
 
 .contentbg{
@@ -51,7 +55,7 @@ font-size: small;
   color: black;
   font-weight: 700;
   border-radius: 10px;
-  padding: 10px;
+  padding: 20px;
 }
 
 .venmo-logo {
@@ -61,7 +65,7 @@ font-size: small;
 
 .venmo-button {
   display: inline-block;
-  background-color: #888b8e; 
+  background-color: #ffffff; 
   color: white;
   padding: 10px 10px;
   text-align: center;
@@ -70,7 +74,7 @@ font-size: small;
   font-size: 16px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-  width: 100%;
+  width: 25%;
 }
 
 .venmo-button:hover {
@@ -78,11 +82,22 @@ font-size: small;
 }
 
 .donatecontainer{
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
   background: rgba(156, 250, 162, 0.558);
-  padding: .5em;
+  padding: 0.5em;
   border-radius: 10px;
-  margin-top: .5em;
-  margin-bottom: .5em;
+  color: rgb(0, 0, 0);
+  margin: auto;
+  width: 100%; 
+  height: auto; 
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+
+.donateheader {
+  margin-right: 3em;
 }
 
 @media (max-width: 680px) {
@@ -91,6 +106,7 @@ font-size: small;
     align-items: center;
     margin: 1em;
     overflow: hidden;
+    position: fixed;
   }
 
   .venmo-button {

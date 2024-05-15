@@ -85,17 +85,18 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(255, 244, 179, 0.949);
+  background-color: rgba(245, 245, 245, 0.949);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
-  width: 80%;
+  width: 90%;
   max-width: 600px;
-  max-height: 80vh; /* Sets a maximum height */
-  overflow-y: auto; /* Enables scrolling on the modal itself */
+  max-height: 80vh; 
+  overflow-y: auto; 
   color: black;
   border: solid .1em rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px;
   }
 
   .modal-content {
@@ -106,11 +107,11 @@ export default {
 
   .modal-content img {
   width: 100%;
-  max-width: 300px;
+  max-width: 400px;
   height: auto;
   margin: 10px 0;
   border-radius: 10px;
-  border: solid .2em brown;
+  border: solid .2em rgb(255, 255, 255);
   }
 
   .modal-content ul {
@@ -122,6 +123,7 @@ export default {
   background: rgba(255,255,255,0.7);
   padding: .5em;
   border-radius: 10px;
+  border: solid .1em rgb(255, 255, 255);
   }
 
   .modal-content li {
@@ -158,5 +160,6 @@ export default {
   p {
     margin-bottom: 5px;
   }
+
 </style>
   
