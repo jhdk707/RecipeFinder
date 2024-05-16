@@ -4,7 +4,7 @@ import HeaderBar from './components/HeaderBar.vue'
 </script>
 
 <template class="overflow-y-auto">
-  <div class="body">
+<div class="body">
   <div class="headercontainer">
   <HeaderBar/>
   </div>
@@ -23,7 +23,8 @@ import HeaderBar from './components/HeaderBar.vue'
   justify-content: flex-start;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling on the body directly */
+  overflow: hidden; 
+  height: 100vh;
 }
 
 .headercontainer {
@@ -36,28 +37,26 @@ import HeaderBar from './components/HeaderBar.vue'
 
 .viewcontainer {
   width: 100vw;
-  overflow-y: auto;
+  margin-top: 70px;
+  margin-bottom: 10px;
   box-sizing: border-box;
+  height: 100vh;
 }
-
-
 
 @media (max-width: 680px) {
 
   .headercontainer {
   position: fixed;
-  margin-top: 2em; 
   width: 100%;
   z-index: 1000;
   background-color: #181818;
   }
 
   .viewcontainer {
-  width: 100vw; /* Adjusted to 100% of the viewport width for consistency */
-  margin-top: 95px; 
-  overflow-y: auto; /* Ensures scroll within this container only */
-  height: calc(90vh - 20px); /* Subtract the header's height from the viewport height */
-  box-sizing: border-box; /* Include padding in height calculation */
+  width: 100vw; 
+  margin-top: 65px; 
+  box-sizing: border-box; 
+  height: 90vh;
   }
 
   .body {
@@ -67,7 +66,8 @@ import HeaderBar from './components/HeaderBar.vue'
   justify-content: flex-start;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent scrolling on the body directly */
+  overflow-y: auto;
+  margin-bottom: 5px;
   }
 }
 </style>

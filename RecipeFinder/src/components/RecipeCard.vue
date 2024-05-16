@@ -1,11 +1,4 @@
-<!-- <template>
-    <div class="card" @click="emitRecipeId">
-      <h4>{{ recipe.title }}</h4>
-      <img :src="recipe.image" :alt="recipe.title" style="width: 100%;">
-    </div>
-  </template> -->
-  
-  <template>
+    <template>
     <fwb-card
       :img-alt="recipe.title"
       :img-src="recipe.image"
@@ -16,8 +9,16 @@
       <div class="p-5">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
           {{ recipe.title }}
+          {{ recipe.properties }}
         </h5>
       </div>
+      <div class="dietary-icons">
+      <img v-if="recipe.vegan" src="@/components/icons/vegan_PNG25.png" alt="Vegan" />
+      <img v-if="recipe.vegetarian" src="@/components/icons/vegetarian.jpg" alt="Vegetarian" />
+      <img v-if="recipe.glutenFree" src="@/components/icons/glutenfree.jpg" alt="Gluten-Free" />
+      <img v-if="recipe.dairyFree" src="@/components/icons/dairyfree.png" alt="Dairy-Free" />
+      <img v-if="recipe.ketogenic" src="@/components/icons/ketologo.jpg" alt="Ketogenic" />
+    </div>
     </fwb-card>
   </template>
 
@@ -29,7 +30,10 @@
   <script>
   export default {
     props: {
-      recipe: Object
+      recipe: {
+      type: Object,
+      required: true
+    }
     },
     methods: {
       emitRecipeId() {
@@ -52,12 +56,32 @@
   
   
   <style>
+.custom-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures that the content is spaced out and the icons stay at the bottom */
+  height: 100%; /* Set the height to 100% to use the full height of the card */
+}
+
 .custom-card img {
-  width: 100%; /* Ensure the image is full width */
-  height: auto; /* Maintain the aspect ratio */
-  object-fit: cover; /* Cover the available area without losing the aspect ratio */
+  width: 100%; 
+  height: auto; 
+  object-fit: cover; 
   border: solid .20rem white;
   border-radius: 10px;
+}
+
+.dietary-icons {
+  text-align: center; /* Center the icons horizontally */
+  padding: 10px 0; /* Add some padding at the top and bottom for spacing */
+}
+
+.dietary-icons img {
+  width: 48px;
+  height: 48px;
+  margin: 0 5px; /* Centering and providing equal horizontal space around icons */
+  display: inline-block; /* Align icons in a line */
+  vertical-align: middle; /* Align icons vertically in the middle */
 }
   </style>
   
