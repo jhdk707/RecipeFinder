@@ -1,11 +1,16 @@
 <template>
   <div class="modal">
-    <button class="close inline-flex justify-center items-center py-1 px-5 text-sm font-semibold text-center text-white rounded-lg bg-red-700" @click="$emit('closeModal')">Close</button>
+    <button
+      class="close inline-flex justify-center items-center py-1 px-5 text-sm font-semibold text-center text-white rounded-lg bg-red-700"
+      @click="$emit('closeModal')"
+    >
+      Close
+    </button>
     <div class="modal-content">
       <h2>{{ recipe.title }}</h2>
-      <img :src="recipe.image" :alt="recipe.title" loading="lazy">
+      <img :src="recipe.image" :alt="recipe.title" loading="lazy" />
       <h3 class="text-base custom-hover" v-if="recipe.extendedIngredients.length > 10" @click="toggleIngredients">
-        <span>{{ showIngredients ? 'Hide' : 'Show' }} Ingredients </span>
+        <span>{{ showIngredients ? 'Hide' : 'Show' }} Ingredients</span>
       </h3>
       <ul v-show="showIngredients || recipe.extendedIngredients.length <= 10">
         <li v-for="ingredient in aggregatedIngredients" :key="ingredient.id">
@@ -13,70 +18,100 @@
         </li>
       </ul>
       <p>Preparation time: {{ recipe.readyInMinutes }} minutes</p>
-      <a class="link inline-flex justify-center items-center py-1 px-5 text-sm font-semibold text-center text-white rounded-lg bg-green-700" :href="recipe.sourceUrl" target="_blank">Read Full Recipe</a>
+      <h3>Nutrition Information:</h3>
+      <ul v-if="nutrition">
+        <li v-for="(value, key) in nutrition.combinedTotals" :key="key">
+          {{ key }}: {{ value }}
+        </li>
+      </ul>
+      <p v-else>Loading nutrition information...</p>
+      <a
+        class="link inline-flex justify-center items-center py-1 px-5 text-sm font-semibold text-center text-white rounded-lg bg-green-700"
+        :href="recipe.sourceUrl"
+        target="_blank"
+      >
+        Read Full Recipe
+      </a>
     </div>
   </div>
 </template>
 
-
-
-  
 <script>
 export default {
   props: {
-  recipe: {
-    type: Object,
-    required: true,
-    default: () => ({})
-  }
-},
+    recipe: {
+      type: Object,
+      required: true,
+      default: () => ({}),
+    },
+  },
   data() {
     return {
-      showIngredients: false  // Controls the visibility of the ingredients list
+      showIngredients: false,
+      nutrition: null, // Store nutrition data
     };
   },
   computed: {
     aggregatedIngredients() {
-      const ingredientMap = new Map();  // Use a Map to track ingredients by name
+      const ingredientMap = new Map();
 
       this.recipe.extendedIngredients.forEach((ingredient) => {
-        const key = ingredient.name.toLowerCase().trim();  // Normalize the key to avoid case-sensitive duplicates
+        const key = ingredient.name.toLowerCase().trim();
         if (ingredientMap.has(key)) {
-          // If the ingredient is already in the map, add to its amount
           const existing = ingredientMap.get(key);
-          existing.amount += parseFloat(ingredient.amount) || 0;  // Ensure the amount is a number, defaulting to 0 if NaN
+          existing.amount += parseFloat(ingredient.amount) || 0;
           ingredientMap.set(key, existing);
         } else {
-          // Otherwise, add the ingredient to the map
-          ingredientMap.set(key, { 
-            ...ingredient, 
-            amount: parseFloat(ingredient.amount) || 0  // Ensure the initial amount is a number
+          ingredientMap.set(key, {
+            ...ingredient,
+            amount: parseFloat(ingredient.amount) || 0,
           });
         }
       });
 
-      // Convert the Map back to an array
       return Array.from(ingredientMap.values());
-    }
+    },
   },
   methods: {
     toggleIngredients() {
-      this.showIngredients = !this.showIngredients;  // Toggle visibility
-    }
-  },
-  mounted() {
-    // Preload the image as soon as the component mounts
-    const img = new Image();
-    img.src = this.recipe.image;
-    img.onload = () => {
-      console.log('Image preloaded successfully');
+      this.showIngredients = !this.showIngredients;
+    },
+    async fetchNutrition() {
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/${this.recipe.id}/nutritionWidget.json`;
+  const options = {
+    method: 'GET',
+    headers: {
+      'x-rapidapi-key': '16f87e2059mshe937410fce7f782p1d1cc9jsnae5dd54150f4',
+      'x-rapidapi-host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com',
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log('API Response:', result);  // Log the response to debug
+
+    this.nutrition = {
+      combinedTotals: {
+        calories: result.calories,
+        carbs: result.carbs,
+        fat: result.fat,
+        protein: result.protein
+      },
     };
-    img.onerror = () => {
-      console.error('Failed to preload image');
-    };
+  } catch (error) {
+    console.error('Failed to fetch nutrition information:', error);
+    this.nutrition = { error: 'Unable to load nutrition data.' };
   }
 }
+  },
+  mounted() {
+    this.fetchNutrition(); // Fetch nutrition data when the component is mounted
+  },
+};
 </script>
+
+
 
   
 <style>
